@@ -1,12 +1,14 @@
 import './style.css';
 
-const root = document.createElement('div');
-root.innerHTML = '<h1>Collapse widget demo</h1>';
-document.body.appendChild(root);
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleBtn = document.getElementById('textToggle');
+  const hiddenText = document.getElementById('hiddenText');
 
-const toggleBtn = document.getElementById("textToggle");
-const hiddenText = document.getElementById("hiddenText");
+  if (!toggleBtn || !hiddenText) {
+    return;
+  }
 
-toggleBtn.addEventListener("click", () => {
-  hiddenText.classList.toggle("visible");
+  toggleBtn.addEventListener('click', () => {
+    hiddenText.classList.toggle('visible');
+  });
 });
