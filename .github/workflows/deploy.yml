@@ -21,9 +21,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22.14.0
-          cache: 'yarn'
-      - run: yarn
-      - run: yarn lint
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run lint
 
   test:
     runs-on: ubuntu-latest
@@ -32,9 +32,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22.14.0
-          cache: 'yarn'
-      - run: yarn
-      - run: yarn test
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run test
 
   build:
     needs: [eslint, test]
@@ -47,13 +47,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22.14.0
-          cache: 'yarn'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: yarn
+        run: npm ci
 
       - name: Build (production for GH Pages)
-        run: yarn build -- --env GH_PAGES=true
+        run: npm run build -- --env GH_PAGES=true
 
       - name: Show dist contents (debug)
         run: ls -la dist || true
